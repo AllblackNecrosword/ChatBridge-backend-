@@ -6,7 +6,13 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 dotenv.config(); // Add this line to load environment variables
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
