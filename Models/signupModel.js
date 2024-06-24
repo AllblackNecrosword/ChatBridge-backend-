@@ -1,19 +1,26 @@
 const mongoose = require("mongoose");
 
-const Signup = mongoose.model("User",{
-    username:{
-        type:String,
-        require:true,
+const Signup = mongoose.model("User", {
+  username: {
+    type: String,
+    require: true,
+  },
+  email: {
+    type: String,
+    require: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  isAvatarImageSet: {
+    type: Boolean,
+    default: false,
+  },
+  avatarImage: {
+    type: String,
+    default: "",
+  },
+});
 
-    },
-    email:{
-        type:String,
-        require:true,
-    },
-    password:{
-        type:String,
-        required:true,
-    }
-})
-
-module.exports=Signup;
+module.exports = Signup;
