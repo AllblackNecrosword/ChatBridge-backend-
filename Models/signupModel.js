@@ -13,10 +13,10 @@ const Signup = mongoose.model("User", {
     type: String,
     required: true,
   },
-  isAvatarImageSet: {
-    type: Boolean,
-    default: false,
-  },
+  // isAvatarImageSet: {
+  //   type: Boolean,
+  //   default: false,
+  // },
   avatarImage: {
     type: String,
     default: "",

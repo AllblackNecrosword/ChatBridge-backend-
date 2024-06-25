@@ -10,9 +10,9 @@ const createtoken = (id) => {
   });
 };
 
-
 const registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, avatarImage } = req.body;
+  console.log(req.body);
   try {
     if (!username || !email || !password) {
       return res.status(400).json("Please fill up the forms");
@@ -31,6 +31,7 @@ const registerUser = async (req, res) => {
       username,
       email,
       password: hash,
+      avatarImage,
     });
 
     const token = createtoken(createuser._id);
@@ -41,9 +42,7 @@ const registerUser = async (req, res) => {
     });
 
     if (createuser) {
-      return res
-        .status(201)
-        .json({ createuser: createuser._id, created: true });
+      return res.status(201).json({ createuser, created: true });
     } else {
       return res.status(400).json({ message: "Error creating new user" });
     }
@@ -85,7 +84,24 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  const {id} = req.params;
+  console.log(id);
+  try {
+    const users = await Signup.find({ _id: { $ne: id } }).select([
+      "email",
+      "username",
+      "avatarImage",
+      "_id",
+    ]);
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getUser,
 };
