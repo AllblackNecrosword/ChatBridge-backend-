@@ -19,9 +19,11 @@ app.use(bodyParser.json());
 
 //Define the Routes
 const userRoutes = require("./Routes/userRoute");
+const messageRoute = require("./Routes/messageRoute");
 
 //Routes middleware
 app.use("/", userRoutes);
+app.use("/message",messageRoute)
 
 //Connecting to mongosh
 const PORT = process.env.PORT || 3000;
