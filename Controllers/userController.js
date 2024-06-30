@@ -86,7 +86,7 @@ const loginUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   const {id} = req.params;
-  console.log(id);
+  // console.log(id);
   try {
     const users = await Signup.find({ _id: { $ne: id } }).select([
       "email",
